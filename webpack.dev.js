@@ -10,7 +10,7 @@ module.exports = merge(common, {
   },
   devtool: false,
   devServer: {
-    contentBase: `./dist`,
+    contentBase: `./src`,
     host: `0.0.0.0`,
     disableHostCheck: true,
     historyApiFallback: true,

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Rank = ({ value }) => (
-  <div className="Rank">
+const Rank = ({ value, ...etc }) => (
+  <div className="Rank" {...etc}>
     <h3 className="Rank__Info">
       <span className="secondaryColor">#</span>
       {value}

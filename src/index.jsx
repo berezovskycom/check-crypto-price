@@ -13,7 +13,7 @@ function handleHash() {
 
 const Index = () => (
   <Router>
-    <div>
+    <div className="Page">
       {
         handleHash() !== `/menu` && <Route path={handleHash()} component={() => <CryptoPage symbol={handleHash().slice(1)} />} />
       }

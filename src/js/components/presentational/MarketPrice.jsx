@@ -5,10 +5,10 @@ const MarketPrice = ({ low, high, currency, ...etc }) => (
   <div className="MarketPrice" {...etc}>
     <div className="MarketPrice__High">
       {high}
-      <span className="secondaryColor">{currency}</span>
+      <span className="secondaryColor">{currency} HI</span>
     </div>
     <div className="MarketPrice__Low">
-      {low}
+      LO {low}
       <span className="secondaryColor">{currency}</span>
     </div>
   </div>

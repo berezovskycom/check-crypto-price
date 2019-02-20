@@ -9,6 +9,7 @@ import MarketChange from '../presentational/MarketChange';
 import CurrencyCreated from '../presentational/CurrencyCreated';
 import LastUpdated from '../presentational/LastUpdated';
 import Rank from '../presentational/Rank';
+import Symbol from '../presentational/Symbol';
 import { parseCreatedAt } from '../../misc/parseDate';
 
 class CryptoPage extends Component {
@@ -95,20 +96,23 @@ class CryptoPage extends Component {
     } = this.state;
     return (
       <div className="CryptoPage">
-        <div className="header container">
-          <Logo name={name} src={image} />
-          <Title name={name} symbol={symbol} />
-          <Rank value={rank} />
-        </div>
-        <div className="main container">
-          <CurrentPrice value={current_price} currency={currency} />
-          <MarketPrice low={low_24h} high={high_24h} currency={currency} />
-          <MarketChange percent={market_cap_change_percentage_24h_in_currency} />
-        </div>
-        <div className="footer container">
-          <CurrencyCreated at={genesis_date} />
-          <LastUpdated at={last_updated} />
-        </div>
+        <section className="Theme ThemeHeader ThemeHeader--dark">
+          <div className="ThemeHeader__DarkCover"></div>
+          <video className="ThemeHeader__Video" muted autoPlay loop>
+            <source src="./assets/video/blackpepper.mp4" type="video/mp4" />
+          </video>
+          <div className="CryptoPage__Header Header">
+            <Rank value={rank} className="Header__Top Header__Rank" />
+            <Symbol value={symbol} />
+
+            <div className="Header__MainContent">
+              <Title name={name} />
+              <CurrentPrice value={current_price} currency={currency} />
+              <MarketPrice low={low_24h} high={high_24h} currency={currency} />
+              <MarketChange percent={market_cap_change_percentage_24h_in_currency} />
+            </div>
+          </div>
+        </section>
       </div>
     );
   }

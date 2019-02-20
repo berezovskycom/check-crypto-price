@@ -2,73 +2,11 @@
 @import misc/vars
 @import misc/reset
 @import misc/general
-@import components/Logo
-
-.secondaryColor
-	color: #ccc
-
-.CryptoPage
-	box-sizing: border-box
-	display: flex
-	flex-direction: column
-	align-items: center
-	justify-content: space-between
-	width: 100%
-	min-height: 100vh
-	padding: 3rem 2rem 1.5rem 2rem
-
-.header
-	+flex(row, center, flex-start, nowrap)
-	width: 100%
-
-.header .Logo
-	flex-grow: 1
-
-.header .Title
-	flex-grow: 4
-	padding-left: .1rem
-
-.header .Rank
-	flex-grow: 1
-	text-align: right
-
-.Title__Name
-	border-bottom: 2px solid #ccc
-	line-height: 1.3
-
-.Title__Symbol
-	font-size: 1.15rem
-	font-weight: 300
-	font-style: italic
-	color: #333
-	line-height: 1.5
-
-.CurrentPrice__Value
-	font-size: 5rem
-	letter-spacing: -0.04rem
-
-.CurrentPrice__Currency
-	font-family: serif
-	font-size: 6rem
-	font-weight: 300
-
-.MarketPrice
-	font-size: 2.1rem
-	line-height: 1.5
-	margin-top: 0.5rem
-	margin-bottom: 0.75rem
-
-.MarketChange__Percent
-	font-size: 1.5rem
-	line-height: 1.2
-
-.main
-	width: 100%
-	// background-color: bisque
-	text-align: center
-	height: 32vh
-
-.footer
-	+flex(row, center, space-between, nowrap)
-	width: 100%
-	font-size: 1.25rem
+@import components/Theme
+@import components/CryptoPage
+@import components/Header
+@import components/Title
+@import components/CurrentPrice
+@import components/MarketPrice
+@import components/MarketChange
+@import components/Menu
