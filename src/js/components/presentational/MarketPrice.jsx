@@ -1,7 +1,13 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MarketPrice = ({ low, high, currency, ...etc }) => (
+const MarketPrice = ({
+  low,
+  high,
+  currency,
+  ...etc
+}) => (
   <div className="MarketPrice" {...etc}>
     <div className="MarketPrice__High">
       {high}

@@ -9,6 +9,6 @@ const LastUpdated = ({ at, ...etc }) => (
 
 LastUpdated.propTypes = {
   at: PropTypes.string.isRequired,
-}
+};
 
 export default LastUpdated;
