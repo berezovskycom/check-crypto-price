@@ -19,20 +19,21 @@ class Menu extends Component {
 
   mapThroughList(event) {
     const { value } = event.target;
-    const { dbList, frontList } = this.state;
-    const obj = [];
+    const { dbList } = this.state;
+    const deliverFromBackToFront = [];
     dbList.map((coin) => {
       const { symbol, id, name } = coin;
       if (
-        symbol.includes(value) ||
-        id.includes(value) ||
-        name.includes(value)
+        symbol.includes(value)
+        || id.includes(value)
+        || name.includes(value)
       ) {
-        obj.push(coin);
+        deliverFromBackToFront.push(coin);
         this.setState({
-          frontList: obj,
+          frontList: deliverFromBackToFront,
         });
       }
+      return deliverFromBackToFront;
     });
   }
 
@@ -43,7 +44,7 @@ class Menu extends Component {
         <h1 className="Menu__Title">List of cryptos</h1>
         <nav className="Menu__Container">
           {
-            frontList.map(coin => <a href={`/${coin.symbol}`} key={coin.id} className="Menu__Item">{coin.name}</a>)
+            frontList.map(coin => <Link to={`/${coin.symbol}`} key={coin.id} className="Menu__Item">{coin.name}</Link>)
           }
         </nav>
         <form className="Form">
