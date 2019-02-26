@@ -50,25 +50,25 @@ function createGetRequest(coin) {
 }
 
 getListOfCrypto().then((object) => {
-  object.data.map((coin) => {
-    createGetRequest(coin);
-  });
+  object.data.map(coin => createGetRequest(coin));
 });
 
-const History = async (date) => {
-  const data = await CoinGeckoClient.coins.fetchHistory(`bitcoin`, {
+const History = async (name, date) => {
+  const data = await CoinGeckoClient.coins.fetchHistory(name, {
     date,
   });
   return data;
 };
 
 app.post(`/api/history`, (req, res) => {
-  const { date } = req.body;
-  History(date).then(response => res.json(response));
+  const { name, date } = req.body;
+  History(name, date).then((response) => {
+    res.json(response.data.market_data.current_price.usd);
+  });
 });
 
 
 app.listen(3001, (error) => {
+  // eslint-disable-next-line no-console
   if (error) console.log(error);
-  console.log(`Listening on port: ${3001}`);
 });
