@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
@@ -5,23 +6,36 @@ import './sass/style.sass';
 
 import CryptoPage from './js/components/container/CryptoPage';
 import Menu from './js/components/container/Menu';
+import Index from './js/components/container/Index';
 
-function handleHash() {
+const handleHash = () => {
   const { pathname } = window.location;
-  return pathname;
-}
+  switch (pathname) {
+    case `/`:
+    case `/menu`:
+      return undefined;
+    default:
+      return pathname;
+  }
+};
 
-const Index = () => (
+const Path = () => (
   <Router>
     <div className="Page">
-      {
-        handleHash() !== `/menu` && <Route path={handleHash()} component={() => <CryptoPage symbol={handleHash().slice(1)} />} />
-      }
       <Route exact path="/menu" component={Menu} />
+      <Route exact path="/" component={Index} />
+      {
+        handleHash() && (
+          <Route
+            path={handleHash()}
+            component={() => <CryptoPage id={handleHash().slice(1)} />}
+          />
+        )
+      }
     </div>
   </Router>
 );
 ReactDOM.render(
-  <Index />,
+  <Path />,
   document.querySelector(`.app`),
 );
