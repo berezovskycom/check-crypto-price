@@ -42,11 +42,22 @@ class Menu extends Component {
     return (
       <section className="Menu">
         <h1 className="Menu__Title">List of cryptos</h1>
-        <nav className="Menu__Container">
+        <ul className="Menu__Container">
           {
-            frontList.map(coin => <Link to={`/${coin.symbol}`} key={coin.id} className="Menu__Item">{coin.name}</Link>)
+            frontList.map(coin => (
+              <li key={`li-${coin.id}`}>
+                <Link to={`/${coin.symbol}`} key={coin.id} className="Menu__Item">{coin.name}</Link>
+                <button
+                  type="button"
+                  className="Menu__AddToFavorites"
+                  key={`fav-${coin.id}`}
+                >
+                  Add to fav.
+                </button>
+              </li>
+            ))
           }
-        </nav>
+        </ul>
         <form className="Form">
           <input
             type="search"
