@@ -22,13 +22,38 @@
 		padding-bottom: 18vw
 
 	.Menu__Item
+		position: relative
 		width: 100%
 		max-width: 720px
-		padding-bottom: .4rem
+		padding-bottom: .2rem
+		margin-bottom: .4rem
 		border-bottom: 1px solid #eee
-		font-size: 1.45rem
-		line-height: 1.4
+
+	.Menu__AddToFavorites
+		position: absolute
+		top: 50%
+		right: 0
+		transform: translateY(-50%)
+		font-family: $oswald
+		font-size: 1rem
+		line-height: 1.25
+		text-transform: lowercase
+		color: #fff
+
+		&:hover, &:focus
+			text-decoration: underline
+
+	.Menu__AddToFavorites--Disabled
 		color: #ccc
+		cursor: default
+
+		&:hover, &:focus
+			text-decoration: none		
+
+	.Menu__Link
+		font-size: 1.45rem
+		color: #ccc
+		line-height: 1.4
 		text-decoration: none
 		transition: all .05s ease-in-out
 

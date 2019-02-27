@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -6,6 +8,7 @@ class Menu extends Component {
   constructor() {
     super();
     this.mapThroughList = this.mapThroughList.bind(this);
+    this.addToLocalStorage = this.addToLocalStorage.bind(this);
     this.state = {
       dbList: [],
       frontList: [],
@@ -37,6 +40,30 @@ class Menu extends Component {
     });
   }
 
+  addToLocalStorage({ target: btn }) {
+    const { localStorage } = window;
+    const { favCryptos } = localStorage;
+    let oldStorage = {};
+    if (favCryptos) {
+      oldStorage = JSON.parse(favCryptos);
+    }
+    const s = btn.value.split(`,`);
+    const obj = [];
+    const info = {
+      id: s[0],
+      symbol: s[1],
+      name: s[2],
+    };
+    obj.push(info);
+    if (oldStorage.length > 0) {
+      obj.push(...oldStorage);
+    }
+    localStorage.setItem(`favCryptos`, JSON.stringify(obj));
+    btn.innerText = `Added to favorites!`;
+    btn.disabled = true;
+    btn.classList.add(`Menu__AddToFavorites--Disabled`);
+  }
+
   render() {
     const { frontList } = this.state;
     return (
@@ -45,14 +72,16 @@ class Menu extends Component {
         <ul className="Menu__Container">
           {
             frontList.map(coin => (
-              <li key={`li-${coin.id}`}>
-                <Link to={`/${coin.symbol}`} key={coin.id} className="Menu__Item">{coin.name}</Link>
+              <li key={`li-${coin.id}`} className="Menu__Item">
+                <Link to={`/${coin.symbol}`} key={coin.id} className="Menu__Link">{coin.name}</Link>
                 <button
                   type="button"
                   className="Menu__AddToFavorites"
                   key={`fav-${coin.id}`}
+                  value={`${coin.id},${coin.symbol},${coin.name}`}
+                  onClick={this.addToLocalStorage}
                 >
-                  Add to fav.
+                  Add to favorites
                 </button>
               </li>
             ))
