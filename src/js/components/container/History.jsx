@@ -42,6 +42,8 @@ class History extends Component {
 
   render() {
     const { oldPrice, formattedDate } = this.state;
+    const { from } = this.props;
+
     return (
       <div className="History">
         <label htmlFor="history" className="History__Title">
@@ -50,6 +52,7 @@ class History extends Component {
             type="date"
             id="history"
             name="history"
+            min={from}
             className="History__DateInput"
             data-date-inline-picker="true"
             onChange={this.handleDateChange}
@@ -76,6 +79,11 @@ class History extends Component {
 
 History.propTypes = {
   of: PropTypes.string.isRequired,
+  from: PropTypes.string,
 };
+
+History.defaultProps = {
+  from: `2000-01-01`,
+}
 
 export default History;

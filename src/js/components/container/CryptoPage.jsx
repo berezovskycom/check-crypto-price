@@ -55,6 +55,7 @@ class CryptoPage extends Component {
         this.setState({
           name,
           symbol,
+          dateHTMLInput: genesis_date,
           genesis_date: parseCreatedAt(genesis_date),
           rank: market_cap_rank,
           current_price: `${current_price.usd.toFixed(0)}`,
@@ -72,6 +73,7 @@ class CryptoPage extends Component {
     const {
       name,
       symbol,
+      dateHTMLInput,
       genesis_date,
       rank,
       current_price,
@@ -82,6 +84,8 @@ class CryptoPage extends Component {
       currency,
       links,
     } = this.state;
+    console.log(dateHTMLInput);
+    const genesisDatetoCalendar = `2019-01-01`;
     const moreInfo = [{
       title: `Since`,
       data: genesis_date,
@@ -125,7 +129,7 @@ class CryptoPage extends Component {
               ))
             }
             <li>
-              <History of={name.toLowerCase()} />
+              <History of={name.toLowerCase()} from={dateHTMLInput} />
             </li>
             <li>
               <Link to="/menu" className="BackTo__Menu">Back to menu</Link>
